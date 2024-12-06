@@ -1,0 +1,36 @@
+#!/bin/bash
+# This is a shebang line, telling the system to use Bash for interpreting the script.
+
+echo "*****Automated script for adding user in production*****"
+# This prints a message indicating the script's purpose.
+
+sleep 2
+# Pauses the script for 2 seconds to make output more readable.
+
+for i in {a..d}  # A loop to iterate over the letters a, b, c, and d.
+do
+  useradd user$i
+  # The 'useradd' command creates a new user. It will create users usera, userb, userc, and userd based on the loop.
+  
+  echo "redhat" | passwd --stdin user$i
+  # The 'passwd' command sets the password for the newly created user.
+  # '--stdin' allows passing the password through standard input. In this case, it sets the password for the user to 'redhat'.
+
+done
+# End of the loop.
+
+sleep 2
+# Pauses again to ensure the system has time to process the commands before displaying output.
+
+echo "*****All users added Successfully, below is the output of /etc/passwd*****"
+# Prints a message indicating that users have been added successfully.
+
+sleep 2
+# Pauses for 2 seconds.
+
+tail -5 /etc/passwd
+# The 'tail' command shows the last 5 lines of the '/etc/passwd' file.
+# This file contains user account details, so this shows the newly added users.
+
+exit
+# Exits the script.
